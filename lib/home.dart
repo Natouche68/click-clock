@@ -17,6 +17,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
 
+    _updateTime();
     Timer.periodic(const Duration(seconds: 1), (Timer t) => _updateTime());
   }
 
