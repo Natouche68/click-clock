@@ -48,9 +48,18 @@ class _HomeState extends State<Home> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(hour, style: clockStyle,),
-          Text(minute, style: clockStyle,),
-          Text(second, style: clockStyle,),
+          Text(
+            hour,
+            style: clockStyle,
+          ),
+          Text(
+            minute,
+            style: clockStyle,
+          ),
+          Text(
+            second,
+            style: clockStyle,
+          ),
         ],
       ),
     );
