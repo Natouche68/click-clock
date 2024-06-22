@@ -9,6 +9,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Timer? timer;
   String hour = DateTime.now().hour.toString();
   String minute = DateTime.now().minute.toString();
   String second = DateTime.now().second.toString();
@@ -18,7 +19,17 @@ class _HomeState extends State<Home> {
     super.initState();
 
     _updateTime();
-    Timer.periodic(const Duration(seconds: 1), (Timer t) => _updateTime());
+    timer =
+        Timer.periodic(const Duration(seconds: 1), (Timer t) => _updateTime());
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    if (timer!.isActive) {
+      timer!.cancel();
+    }
   }
 
   void _updateTime() {
