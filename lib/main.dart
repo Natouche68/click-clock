@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     final Widget currentPage;
     switch (selectedPage) {
       case 0:
-        currentPage = const Timer();
+        currentPage = const TimerPage();
         break;
 
       case 1:

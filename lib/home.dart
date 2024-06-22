@@ -35,19 +35,9 @@ class _HomeState extends State<Home> {
   void _updateTime() {
     final DateTime now = DateTime.now();
     setState(() {
-      hour = now.hour.toString();
-      minute = now.minute.toString();
-      second = now.second.toString();
-
-      if (hour.length == 1) {
-        hour = "0$hour";
-      }
-      if (minute.length == 1) {
-        minute = "0$minute";
-      }
-      if (second.length == 1) {
-        second = "0$second";
-      }
+      hour = now.hour.toString().padLeft(2, "0");
+      minute = now.minute.toString().padLeft(2, "0");
+      second = now.second.toString().padLeft(2, "0");
     });
   }
 
