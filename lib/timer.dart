@@ -11,6 +11,7 @@ class TimerPage extends StatefulWidget {
 
 class _TimerState extends State<TimerPage> {
   Timer? timer;
+  int startTime = 0;
   double time = 0;
   bool isRunning = false;
   bool isPaused = false;
@@ -24,7 +25,7 @@ class _TimerState extends State<TimerPage> {
       (Timer t) {
         setState(() {
           if (isRunning && !isPaused) {
-            time += 0.01;
+            time = (DateTime.now().millisecondsSinceEpoch - startTime) / 1000;
           }
         });
       },
@@ -45,6 +46,7 @@ class _TimerState extends State<TimerPage> {
   void _onStartButtonPressed() {
     setState(() {
       isRunning = true;
+      startTime = DateTime.now().millisecondsSinceEpoch;
     });
   }
 
