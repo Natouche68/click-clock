@@ -67,6 +67,7 @@ class _HomePageState extends State<HomePage> {
       body: currentPage,
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedPage,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         onDestinationSelected: (value) {
           setState(() {
             selectedPage = value;
