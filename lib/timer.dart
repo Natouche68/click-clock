@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:clickclock/blocky_number.dart';
 
 class TimerPage extends StatefulWidget {
   const TimerPage({super.key});
@@ -86,7 +87,7 @@ class _TimerState extends State<TimerPage> {
     final timeParts = getTimeParts(time);
 
     final theme = Theme.of(context);
-    final clockStyle = theme.textTheme.displayLarge;
+    final clockStyle = theme.textTheme.displayLarge!;
 
     return Column(
       children: [
@@ -95,17 +96,27 @@ class _TimerState extends State<TimerPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  timeParts["minutes"].toString().padLeft(2, "0"),
-                  style: clockStyle,
+                BlockyNumber(
+                  number: timeParts["minutes"].toString().padLeft(2, "0"),
+                  size: clockStyle.fontSize!,
+                  color: clockStyle.color!,
                 ),
-                Text(
-                  timeParts["seconds"].toString().padLeft(2, "0"),
-                  style: clockStyle,
+                SizedBox(
+                  height: clockStyle.fontSize! / 2,
                 ),
-                Text(
-                  timeParts["secondFractions"].toString().padLeft(2, "0"),
-                  style: clockStyle,
+                BlockyNumber(
+                  number: timeParts["seconds"].toString().padLeft(2, "0"),
+                  size: clockStyle.fontSize!,
+                  color: clockStyle.color!,
+                ),
+                SizedBox(
+                  height: clockStyle.fontSize! / 2,
+                ),
+                BlockyNumber(
+                  number:
+                      timeParts["secondFractions"].toString().padLeft(2, "0"),
+                  size: clockStyle.fontSize!,
+                  color: clockStyle.color!,
                 ),
               ],
             ),

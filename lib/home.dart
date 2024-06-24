@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:clickclock/blocky_number.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -51,68 +51,26 @@ class _HomeState extends State<Home> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SvgPicture.asset(
-                "assets/${hour[0]}.svg",
-                semanticsLabel: hour[0],
-                height: clockStyle.fontSize,
-                colorFilter:
-                    ColorFilter.mode(clockStyle.color!, BlendMode.srcIn),
-              ),
-              SvgPicture.asset(
-                "assets/${hour[1]}.svg",
-                semanticsLabel: hour[1],
-                height: clockStyle.fontSize,
-                colorFilter:
-                    ColorFilter.mode(clockStyle.color!, BlendMode.srcIn),
-              ),
-            ],
+          BlockyNumber(
+            number: hour,
+            size: clockStyle.fontSize!,
+            color: clockStyle.color!,
           ),
           SizedBox(
             height: clockStyle.fontSize! / 2,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SvgPicture.asset(
-                "assets/${minute[0]}.svg",
-                semanticsLabel: minute[0],
-                height: clockStyle.fontSize,
-                colorFilter:
-                    ColorFilter.mode(clockStyle.color!, BlendMode.srcIn),
-              ),
-              SvgPicture.asset(
-                "assets/${minute[1]}.svg",
-                semanticsLabel: minute[1],
-                height: clockStyle.fontSize,
-                colorFilter:
-                    ColorFilter.mode(clockStyle.color!, BlendMode.srcIn),
-              ),
-            ],
+          BlockyNumber(
+            number: minute,
+            size: clockStyle.fontSize!,
+            color: clockStyle.color!,
           ),
           SizedBox(
             height: clockStyle.fontSize! / 2,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SvgPicture.asset(
-                "assets/${second[0]}.svg",
-                semanticsLabel: second[0],
-                height: clockStyle.fontSize,
-                colorFilter:
-                    ColorFilter.mode(clockStyle.color!, BlendMode.srcIn),
-              ),
-              SvgPicture.asset(
-                "assets/${second[1]}.svg",
-                semanticsLabel: second[1],
-                height: clockStyle.fontSize,
-                colorFilter:
-                    ColorFilter.mode(clockStyle.color!, BlendMode.srcIn),
-              ),
-            ],
+          BlockyNumber(
+            number: second,
+            size: clockStyle.fontSize!,
+            color: clockStyle.color!,
           ),
         ],
       ),

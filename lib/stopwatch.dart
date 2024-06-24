@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:clickclock/blocky_number.dart';
 
 class Stopwatch extends StatefulWidget {
   const Stopwatch({super.key});
@@ -93,12 +94,13 @@ class _StopwatchState extends State<Stopwatch> {
     });
   }
 
-  List<Widget> generateClockOptions(int numberOfOptions, TextStyle? style) {
+  List<Widget> generateClockOptions(int numberOfOptions, TextStyle style) {
     return [
       for (var i = 0; i < numberOfOptions; i++)
-        Text(
-          i.toString().padLeft(2, "0"),
-          style: style,
+        BlockyNumber(
+          number: i.toString().padLeft(2, "0"),
+          size: style.fontSize!,
+          color: style.color!,
         ),
     ];
   }
@@ -106,22 +108,31 @@ class _StopwatchState extends State<Stopwatch> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final clockStyle = theme.textTheme.displayLarge;
+    final clockStyle = theme.textTheme.displayLarge!;
 
     final List<Widget> clock;
     if (isRunning) {
       clock = [
-        Text(
-          hours.toString().padLeft(2, "0"),
-          style: clockStyle,
+        BlockyNumber(
+          number: hours.toString().padLeft(2, "0"),
+          size: clockStyle.fontSize!,
+          color: clockStyle.color!,
         ),
-        Text(
-          minutes.toString().padLeft(2, "0"),
-          style: clockStyle,
+        SizedBox(
+          height: clockStyle.fontSize! / 2,
         ),
-        Text(
-          seconds.toString().padLeft(2, "0"),
-          style: clockStyle,
+        BlockyNumber(
+          number: minutes.toString().padLeft(2, "0"),
+          size: clockStyle.fontSize!,
+          color: clockStyle.color!,
+        ),
+        SizedBox(
+          height: clockStyle.fontSize! / 2,
+        ),
+        BlockyNumber(
+          number: seconds.toString().padLeft(2, "0"),
+          size: clockStyle.fontSize!,
+          color: clockStyle.color!,
         ),
       ];
     } else {
@@ -131,8 +142,9 @@ class _StopwatchState extends State<Stopwatch> {
           options: CarouselOptions(
             enlargeCenterPage: true,
             enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+            enlargeFactor: 0.4,
             viewportFraction: 0.3,
-            height: (clockStyle?.fontSize ?? 32) + 4,
+            height: clockStyle.fontSize! * 1.5,
             initialPage: hours,
             onPageChanged: (index, reason) {
               setState(() {
@@ -147,8 +159,9 @@ class _StopwatchState extends State<Stopwatch> {
           options: CarouselOptions(
             enlargeCenterPage: true,
             enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+            enlargeFactor: 0.4,
             viewportFraction: 0.3,
-            height: (clockStyle?.fontSize ?? 32) + 4,
+            height: clockStyle.fontSize! * 1.5,
             initialPage: minutes,
             onPageChanged: (index, reason) {
               setState(() {
@@ -163,8 +176,9 @@ class _StopwatchState extends State<Stopwatch> {
           options: CarouselOptions(
             enlargeCenterPage: true,
             enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+            enlargeFactor: 0.4,
             viewportFraction: 0.3,
-            height: (clockStyle?.fontSize ?? 32) + 4,
+            height: clockStyle.fontSize! * 1.5,
             initialPage: seconds,
             onPageChanged: (index, reason) {
               setState(() {
