@@ -124,9 +124,9 @@ class _StopwatchState extends State<Stopwatch> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final clockStyle = theme.textTheme.displayLarge!;
-    final clockColor1 = theme.colorScheme.secondary;
+    final clockColor1 = theme.colorScheme.primaryContainer;
     final clockColor2 = theme.colorScheme.primary;
-    final clockColor3 = theme.colorScheme.secondaryFixedDim;
+    final clockColor3 = theme.colorScheme.onSurface;
     final unselectedColor = theme.colorScheme.surfaceContainerHighest;
 
     final List<Widget> clock;
