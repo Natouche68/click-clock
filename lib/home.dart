@@ -46,6 +46,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final clockStyle = theme.textTheme.displayLarge!;
+    final clockColor1 = theme.colorScheme.secondary;
+    final clockColor2 = theme.colorScheme.primary;
+    final clockColor3 = theme.colorScheme.secondaryFixedDim;
 
     return Center(
       child: Column(
@@ -54,7 +57,7 @@ class _HomeState extends State<Home> {
           BlockyNumber(
             number: hour,
             size: clockStyle.fontSize!,
-            color: clockStyle.color!,
+            color: clockColor1,
           ),
           SizedBox(
             height: clockStyle.fontSize! / 2,
@@ -62,7 +65,7 @@ class _HomeState extends State<Home> {
           BlockyNumber(
             number: minute,
             size: clockStyle.fontSize!,
-            color: clockStyle.color!,
+            color: clockColor2,
           ),
           SizedBox(
             height: clockStyle.fontSize! / 2,
@@ -70,7 +73,7 @@ class _HomeState extends State<Home> {
           BlockyNumber(
             number: second,
             size: clockStyle.fontSize!,
-            color: clockStyle.color!,
+            color: clockColor3,
           ),
         ],
       ),

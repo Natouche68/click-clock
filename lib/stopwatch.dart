@@ -94,13 +94,28 @@ class _StopwatchState extends State<Stopwatch> {
     });
   }
 
-  List<Widget> generateClockOptions(int numberOfOptions, TextStyle style) {
+  List<Widget> generateClockOptions(
+    int numberOfOptions,
+    double size,
+    Color selectedColor,
+    Color unselectedColor,
+    String selection,
+  ) {
+    final int selectedIndex;
+    if (selection == "hours") {
+      selectedIndex = hours;
+    } else if (selection == "minutes") {
+      selectedIndex = minutes;
+    } else {
+      selectedIndex = seconds;
+    }
+
     return [
       for (var i = 0; i < numberOfOptions; i++)
         BlockyNumber(
           number: i.toString().padLeft(2, "0"),
-          size: style.fontSize!,
-          color: style.color!,
+          size: size,
+          color: i == selectedIndex ? selectedColor : unselectedColor,
         ),
     ];
   }
@@ -109,6 +124,10 @@ class _StopwatchState extends State<Stopwatch> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final clockStyle = theme.textTheme.displayLarge!;
+    final clockColor1 = theme.colorScheme.secondary;
+    final clockColor2 = theme.colorScheme.primary;
+    final clockColor3 = theme.colorScheme.secondaryFixedDim;
+    final unselectedColor = theme.colorScheme.surfaceContainerHighest;
 
     final List<Widget> clock;
     if (isRunning) {
@@ -116,7 +135,7 @@ class _StopwatchState extends State<Stopwatch> {
         BlockyNumber(
           number: hours.toString().padLeft(2, "0"),
           size: clockStyle.fontSize!,
-          color: clockStyle.color!,
+          color: clockColor1,
         ),
         SizedBox(
           height: clockStyle.fontSize! / 2,
@@ -124,7 +143,7 @@ class _StopwatchState extends State<Stopwatch> {
         BlockyNumber(
           number: minutes.toString().padLeft(2, "0"),
           size: clockStyle.fontSize!,
-          color: clockStyle.color!,
+          color: clockColor2,
         ),
         SizedBox(
           height: clockStyle.fontSize! / 2,
@@ -132,13 +151,19 @@ class _StopwatchState extends State<Stopwatch> {
         BlockyNumber(
           number: seconds.toString().padLeft(2, "0"),
           size: clockStyle.fontSize!,
-          color: clockStyle.color!,
+          color: clockColor3,
         ),
       ];
     } else {
       clock = [
         CarouselSlider(
-          items: generateClockOptions(24, clockStyle),
+          items: generateClockOptions(
+            24,
+            clockStyle.fontSize!,
+            clockColor1,
+            unselectedColor,
+            "hours",
+          ),
           options: CarouselOptions(
             enlargeCenterPage: true,
             enlargeStrategy: CenterPageEnlargeStrategy.zoom,
@@ -155,7 +180,13 @@ class _StopwatchState extends State<Stopwatch> {
           ),
         ),
         CarouselSlider(
-          items: generateClockOptions(60, clockStyle),
+          items: generateClockOptions(
+            60,
+            clockStyle.fontSize!,
+            clockColor2,
+            unselectedColor,
+            "minutes",
+          ),
           options: CarouselOptions(
             enlargeCenterPage: true,
             enlargeStrategy: CenterPageEnlargeStrategy.zoom,
@@ -172,7 +203,13 @@ class _StopwatchState extends State<Stopwatch> {
           ),
         ),
         CarouselSlider(
-          items: generateClockOptions(60, clockStyle),
+          items: generateClockOptions(
+            60,
+            clockStyle.fontSize!,
+            clockColor3,
+            unselectedColor,
+            "seconds",
+          ),
           options: CarouselOptions(
             enlargeCenterPage: true,
             enlargeStrategy: CenterPageEnlargeStrategy.zoom,

@@ -90,6 +90,9 @@ class _TimerState extends State<TimerPage> {
 
     final theme = Theme.of(context);
     final clockStyle = theme.textTheme.displayLarge!;
+    final clockColor1 = theme.colorScheme.secondary;
+    final clockColor2 = theme.colorScheme.primary;
+    final clockColor3 = theme.colorScheme.secondaryFixedDim;
 
     return Column(
       children: [
@@ -101,7 +104,7 @@ class _TimerState extends State<TimerPage> {
                 BlockyNumber(
                   number: timeParts["minutes"].toString().padLeft(2, "0"),
                   size: clockStyle.fontSize!,
-                  color: clockStyle.color!,
+                  color: clockColor1,
                 ),
                 SizedBox(
                   height: clockStyle.fontSize! / 2,
@@ -109,7 +112,7 @@ class _TimerState extends State<TimerPage> {
                 BlockyNumber(
                   number: timeParts["seconds"].toString().padLeft(2, "0"),
                   size: clockStyle.fontSize!,
-                  color: clockStyle.color!,
+                  color: clockColor2,
                 ),
                 SizedBox(
                   height: clockStyle.fontSize! / 2,
@@ -118,7 +121,7 @@ class _TimerState extends State<TimerPage> {
                   number:
                       timeParts["secondFractions"].toString().padLeft(2, "0"),
                   size: clockStyle.fontSize!,
-                  color: clockStyle.color!,
+                  color: clockColor3,
                 ),
               ],
             ),
